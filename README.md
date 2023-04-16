@@ -9,7 +9,12 @@
 
 ## Running project locally
 
-1. clone project
+1. clone repository
 2. in terminal run composer install
-3. in terminal run php artisan serve
-4. in terminal we will see local server that has ran it should be [http://localhost:8000](http://localhost:8000)
+3. create file .env and paste into it everything that is in .env.example
+4. create new database in your localhost
+5. in .env input your database name, username, password
+6. in terminal run php artisan key:generate
+7. in terminal run php artisan migrate --seed
+8. in terminal run php artisan serve
+9. in terminal you will see local server that has ran it should to be [http://localhost:8000](http://localhost:8000)
