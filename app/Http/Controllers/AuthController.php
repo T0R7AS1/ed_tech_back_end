@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -20,13 +21,17 @@ class AuthController extends Controller
         if (!Auth::attempt($credentials)) {
             return response()->json([
                 'errors' => [
-                    'message' => ['invalid_credentials'],
+                    'message' => [trans('resources.invalid_credentials')],
                 ],
             ], 401);
         }
     
         $user = Auth::user();
-        $token = $user->createToken('auth_token')->accessToken->token;
+        $token = Str::random(60);
+ 
+        $request->user()->forceFill([
+            'api_token' => $token,
+        ])->save();
 
         return response()->json([
             'token' => $token,
@@ -54,12 +59,10 @@ class AuthController extends Controller
         ], 201);
     }
 
-    public function logout(Request $request){
-        $request->user()->token()->revoke();
-
+    public function checkUser($user_id){
+        $user = User::findOrFail($user_id);
         return response()->json([
-            'status' => 'success',
-            'message' => 'Logged out successfully.',
+            'user' => $user,
         ]);
     }
 }

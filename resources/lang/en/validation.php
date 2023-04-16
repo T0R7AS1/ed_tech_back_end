@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'required' => 'the_:attribute_field_is_required',
-    'email' => 'please_enter_a_valid_email_address',
-    'max:255' => 'the_:attribute_extended_its_max_length',
-    'string' => 'the_:attribute_must_be_a_string',
-    'unique' => 'the_email_must_be_unique',
-    'min:6' => 'the_:attribute_needs_to_be_at_least_6_characters',  
-    'min:8' => 'the_:attribute_needs_to_be_at_least_8_characters',                  
+    'required' => 'The :attribute field is required',
+    'email' => 'Please enter a valid email address',
+    'max:255' => 'The :attribute extended its max length',
+    'string' => 'The :attribute must be a string',
+    'unique' => 'The email must be unique',
+    'min:6' => 'The :attribute needs to be at least 6 characters',  
+    'min:8' => 'The :attribute needs to be at least 8 characters',                  
 ];

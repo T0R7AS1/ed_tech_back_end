@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -18,6 +19,7 @@ class UserSeeder extends Seeder
                 'name' => 'User ' . $i,
                 'email' => 'user' . $i . '@example.com',
                 'password' => Hash::make('password'),
+                'api_token' => Str::random(60),
             ]);
         }
     }

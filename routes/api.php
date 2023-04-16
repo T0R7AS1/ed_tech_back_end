@@ -19,12 +19,13 @@ use App\Http\Controllers\UserFavoriteProductsController;
 */
 
 
-Route::middleware([Authenticate::class])->group(function(){
-    Route::get('/products', [ProductsController::class, 'index'])->name('products.index');
-    Route::get('/favorites', [UserFavoriteProductsController::class, 'index'])->name('user_favorite_products.index');
-    Route::post('/favorites/{product_id}', [UserFavoriteProductsController::class, 'store'])->name('user_favorite_products.store');
+Route::middleware('auth:api')->group(function(){
+    Route::get('/products', [ProductsController::class, 'index']);
+    Route::get('/favorites', [UserFavoriteProductsController::class, 'index']);
+    Route::post('/add-to-favorites/{product_id}', [UserFavoriteProductsController::class, 'addToFavorites']);
+    Route::post('/remove-from-favorites/{product_id}', [UserFavoriteProductsController::class, 'removeFromFavorites']);
+    Route::get('/user/{user_id}', [AuthController::class, 'checkUser']);
 });
 
-Route::post('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);

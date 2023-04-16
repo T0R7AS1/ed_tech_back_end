@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('name')->nullable();
             $table->text('description')->nullable();
+            $table->decimal('price')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

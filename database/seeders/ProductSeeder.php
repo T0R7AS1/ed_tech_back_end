@@ -20,6 +20,7 @@ class ProductSeeder extends Seeder
             Product::create([
                 'name' => $faker->word(),
                 'description' => $faker->paragraph(),
+                'price' => rand(1, 100) / 10,
             ]);
         }
     }
